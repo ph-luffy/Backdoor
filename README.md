@@ -11,3 +11,7 @@ Reverse Shell with following payload (PHP, RUBY, PERL, PYTHON, NETCAT) credits t
 <li> <b>Mass Defacement</b></li>
 Mass deface sites all folders on the same server
 </ul>
+
+# Review
+
+![ghp_screenshot](https://user-images.githubusercontent.com/77033868/103889609-8ebf8080-509b-11eb-8303-c8f71e0ad076.png)
