@@ -51,7 +51,7 @@ if(!empty($_REQUEST['s_pass'])){
 			ob_end_clean();
 			echo $s_res;
 		}
-		else echo $s_title;
+		else echo $s_title; 
 	}
 	die();
 }
